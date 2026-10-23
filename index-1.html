@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faixa2h – A tua música pronta em 2 horas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f4ff;--surface:#ffffff;--ink:#16183d;--muted:#555a85;--blue:#2b35f5;--on-blue:#ffffff;--sun:#ffc93c;--line:#d6d9f5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12143a;--surface:#1b1e52;--ink:#eef0ff;--muted:#aab0e6;--blue:#7b84ff;--on-blue:#0d0f33;--sun:#ffc93c;--line:#323787}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12143a;--surface:#1b1e52;--ink:#eef0ff;--muted:#aab0e6;--blue:#7b84ff;--on-blue:#0d0f33;--sun:#ffc93c;--line:#323787}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,sans-serif;line-height:1.6;font-size:17px}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.4rem;text-decoration:none}
+.logo span{color:var(--blue)}
+.btn{display:inline-block;background:var(--blue);color:var(--on-blue);border:0;border-radius:999px;padding:13px 26px;font:600 1rem "Figtree",sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;padding:36px 0 64px}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800}
+.hero p{color:var(--muted);max-width:46ch;margin:20px 0 28px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.clock{background:var(--blue);color:var(--on-blue);border-radius:28px;padding:30px;text-align:center}
+.clock small{display:block;font-weight:600;opacity:.85}
+.clock .time{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(3rem,10vw,5rem);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1.1;margin:8px 0 16px}
+.clock .bar{height:10px;background:rgba(255,255,255,.25);border-radius:9px;overflow:hidden}
+.clock .bar i{display:block;height:100%;width:0;background:var(--sun);transition:width .5s linear}
+.clock button{margin-top:18px;background:var(--sun);color:#16183d;border:0;border-radius:999px;padding:11px 22px;font:600 .95rem "Figtree",sans-serif;cursor:pointer}
+section{padding:56px 0}
+.sec-h{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:800;margin-bottom:10px}
+.sub{color:var(--muted);max-width:56ch;margin:0 0 32px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column}
+.plan.top{border-color:var(--blue);border-width:3px}
+.plan h3{font-size:1.3rem}
+.price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.6rem;margin:10px 0;color:var(--blue)}
+.price small{font-size:1rem;color:var(--muted);font-weight:500}
+.plan ul{padding-left:18px;margin:0 0 20px;color:var(--muted);flex:1}
+.plan .btn{text-align:center}
+.tag{align-self:flex-start;background:var(--sun);color:#16183d;font-weight:600;font-size:.85rem;border-radius:999px;padding:3px 12px;margin-bottom:10px}
+.artists{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.artist{background:var(--surface);border-radius:22px;padding:22px;border:2px solid var(--line)}
+.av{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:800 1.3rem "Bricolage Grotesque",sans-serif;color:#16183d;margin-bottom:14px}
+.artist h3{font-size:1.2rem}
+.meta{color:var(--muted);font-size:.95rem;margin:4px 0 12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.row b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem}
+.pick{background:transparent;border:2px solid var(--blue);color:var(--blue);border-radius:999px;padding:7px 16px;font:600 .9rem "Figtree",sans-serif;cursor:pointer}
+.pick:hover{background:var(--blue);color:var(--on-blue)}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding-top:54px}
+.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;background:var(--sun);color:#16183d;display:grid;place-items:center;font:800 1.2rem "Bricolage Grotesque",sans-serif}
+.steps h3{font-size:1.2rem;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted)}
+.order{background:var(--surface);border:2px solid var(--line);border-radius:28px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+.order label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.95rem}
+.order .full{grid-column:1/-1}
+.order input,.order select,.order textarea{font:400 1rem "Figtree",sans-serif;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.order textarea{min-height:96px;resize:vertical}
+.total{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem}
+.msg{grid-column:1/-1;background:var(--sun);color:#16183d;border-radius:16px;padding:16px 20px;font-weight:600}
+.msg[hidden]{display:none}
+footer{padding:36px 0 48px;color:var(--muted);font-size:.9rem;border-top:2px solid var(--line)}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.order{grid-template-columns:1fr;padding:22px}nav .btn{padding:10px 18px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.clock .bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#topo">Faixa<span>2h</span></a>
+  <a class="btn" href="#encomendar">Encomendar</a>
+</nav>
+
+<header class="hero" id="topo">
+  <div>
+    <h1>A tua música pronta em menos de 2 horas.</h1>
+    <p>Escolhe um músico, conta-lhe a tua ideia e recebe a faixa no teu e-mail. Pagas em dólares, a partir de 10 USD.</p>
+    <div class="cta">
+      <a class="btn" href="#encomendar">Encomendar agora</a>
+      <a class="btn alt" href="#preco">Ver preços</a>
+    </div>
+  </div>
+  <div class="clock" aria-live="polite">
+    <small>Prazo máximo de entrega</small>
+    <div class="time" id="timer">2:00:00</div>
+    <div class="bar"><i id="prog"></i></div>
+    <button id="sim" type="button">Simular uma encomenda</button>
+  </div>
+</header>
+
+<section id="preco">
+  <h2 class="sec-h">Preços em dólares</h2>
+  <p class="sub">Todos os pacotes têm entrega em até 2 horas. Pagas uma vez, sem mensalidades.</p>
+  <div class="plans">
+    <div class="plan">
+      <h3>Beat simples</h3>
+      <div class="price">$10 <small>USD</small></div>
+      <ul><li>Instrumental de 1 a 2 minutos</li><li>Género à tua escolha</li><li>1 ficheiro MP3</li></ul>
+      <button class="btn" data-plan="Beat simples|10">Escolher</button>
+    </div>
+    <div class="plan top">
+      <span class="tag">Mais pedido</span>
+      <h3>Música completa</h3>
+      <div class="price">$25 <small>USD</small></div>
+      <ul><li>Música de 2 a 3 minutos</li><li>Letra e voz incluídas</li><li>1 ajuste grátis</li><li>MP3 e WAV</li></ul>
+      <button class="btn" data-plan="Música completa|25">Escolher</button>
+    </div>
+    <div class="plan">
+      <h3>Música profissional</h3>
+      <div class="price">$60 <small>USD</small></div>
+      <ul><li>Gravação e mistura de estúdio</li><li>Masterização final</li><li>3 ajustes grátis</li><li>Capa em alta resolução</li></ul>
+      <button class="btn" data-plan="Música profissional|60">Escolher</button>
+    </div>
+    <div class="plan">
+      <h3>Exclusiva</h3>
+      <div class="price">$120 <small>USD</small></div>
+      <ul><li>Direitos exclusivos da faixa</li><li>Versão instrumental extra</li><li>Ajustes ilimitados em 24h</li></ul>
+      <button class="btn" data-plan="Exclusiva|120">Escolher</button>
+    </div>
+  </div>
+</section>
+
+<section id="musicos">
+  <h2 class="sec-h">Os nossos músicos</h2>
+  <p class="sub">Artistas fictícios que estão sempre disponíveis para este exemplo. Cada um tem o seu estilo e o seu preço base.</p>
+  <div class="artists">
+    <div class="artist"><div class="av" style="background:#ffc93c">KL</div><h3>Kiala Luvambo</h3><p class="meta">Kizomba e semba · voz e guitarra<br>Entrega média: 1h 20min</p><div class="row"><b>desde $15</b><button class="pick" data-artist="Kiala Luvambo">Escolher</button></div></div>
+    <div class="artist"><div class="av" style="background:#9fe3c2">DM</div><h3>DJ Mbanza</h3><p class="meta">Afro house e kuduro · produção de beats<br>Entrega média: 55min</p><div class="row"><b>desde $10</b><button class="pick" data-artist="DJ Mbanza">Escolher</button></div></div>
+    <div class="artist"><div class="av" style="background:#ffa7a7">NS</div><h3>Neusa Sambo</h3><p class="meta">Gospel e balada · voz e piano<br>Entrega média: 1h 35min</p><div class="row"><b>desde $20</b><button class="pick" data-artist="Neusa Sambo">Escolher</button></div></div>
+    <div class="artist"><div class="av" style="background:#b9c0ff">RT</div><h3>Rui Tchakala</h3><p class="meta">Rap e trap em português · letras e voz<br>Entrega média: 1h 10min</p><div class="row"><b>desde $18</b><button class="pick" data-artist="Rui Tchakala">Escolher</button></div></div>
+  </div>
+</section>
+
+<section id="como">
+  <h2 class="sec-h">Como funciona</h2>
+  <p class="sub" style="margin-bottom:36px">Do pedido à música no teu telemóvel, em quatro passos.</p>
+  <ol class="steps">
+    <li><h3>Escolhe o pacote</h3><p>Vê os preços e decide o que precisas.</p></li>
+    <li><h3>Conta a tua ideia</h3><p>Diz o tema, o género e para que ocasião é a música.</p></li>
+    <li><h3>Paga em dólares</h3><p>Pagamento seguro por transferência ou cartão.</p></li>
+    <li><h3>Recebe em 2 horas</h3><p>A faixa chega ao teu e-mail e ao WhatsApp.</p></li>
+  </ol>
+</section>
+
+<section id="encomendar">
+  <h2 class="sec-h">Encomendar a minha música</h2>
+  <p class="sub">Preenche os dados abaixo. Este formulário é só uma demonstração e não envia nada.</p>
+  <div class="order">
+    <label>O teu nome<input id="nome" type="text" placeholder="Ex.: Ana Pereira"></label>
+    <label>E-mail<input id="mail" type="email" placeholder="ana@exemplo.com"></label>
+    <label>Pacote
+      <select id="plano">
+        <option value="10">Beat simples – $10</option>
+        <option value="25" selected>Música completa – $25</option>
+        <option value="60">Música profissional – $60</option>
+        <option value="120">Exclusiva – $120</option>
+      </select>
+    </label>
+    <label>Músico
+      <select id="musico">
+        <option>Kiala Luvambo</option><option>DJ Mbanza</option><option>Neusa Sambo</option><option>Rui Tchakala</option>
+      </select>
+    </label>
+    <label class="full">Conta-nos a tua ideia<textarea id="ideia" placeholder="Ex.: Uma kizomba romântica para o aniversário de casamento dos meus pais."></textarea></label>
+    <div class="full row"><span class="total" id="total">Total: $25</span><button class="btn" id="enviar" type="button">Pagar e começar</button></div>
+    <div class="msg" id="msg" hidden></div>
+  </div>
+</section>
+
+<footer>
+  Faixa2h é um site fictício criado como exemplo. Os músicos, preços e prazos não são reais.
+</footer>
+</div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var plano=$("plano"),musico=$("musico"),total=$("total");
+function upd(){total.textContent="Total: $"+plano.value}
+plano.addEventListener("change",upd);
+document.querySelectorAll("[data-plan]").forEach(function(b){
+  b.addEventListener("click",function(){
+    plano.value=b.getAttribute("data-plan").split("|")[1];upd();
+    $("encomendar").scrollIntoView();
+  });
+});
+document.querySelectorAll("[data-artist]").forEach(function(b){
+  b.addEventListener("click",function(){
+    musico.value=b.getAttribute("data-artist");
+    $("encomendar").scrollIntoView();
+  });
+});
+var TOTAL=7200,left=TOTAL,iv=null;
+function fmt(s){var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;
+  return h+":"+(m<10?"0":"")+m+":"+(x<10?"0":"")+x}
+function draw(){$("timer").textContent=fmt(left);$("prog").style.width=((TOTAL-left)/TOTAL*100)+"%"}
+function start(){
+  if(iv)clearInterval(iv);
+  left=TOTAL;draw();
+  /* simulação acelerada: 1 segundo real = 1 minuto */
+  iv=setInterval(function(){
+    left-=60;
+    if(left<=0){left=0;clearInterval(iv);iv=null;$("sim").textContent="Música entregue. Simular de novo"}
+    draw();
+  },1000);
+  $("sim").textContent="A simular (1 segundo = 1 minuto)";
+}
+$("sim").addEventListener("click",start);
+$("enviar").addEventListener("click",function(){
+  var n=$("nome").value.trim(),e=$("mail").value.trim(),m=$("msg");
+  m.hidden=false;
+  if(!n||!e){m.textContent="Preenche o nome e o e-mail para continuar.";return}
+  m.textContent="Pedido de demonstração recebido, "+n+". "+musico.value+" começa agora e a tua faixa fica pronta em até 2 horas. Total: $"+plano.value+".";
+  start();
+  $("topo").scrollIntoView();
+});
+})();
+</script>
+</body>
+</html>
